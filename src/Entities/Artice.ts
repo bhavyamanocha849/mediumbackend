@@ -17,13 +17,25 @@ export class Article{
     @Column({type:"text"})
     body:string
 
+    @Column('simple-array', { nullable: true })
+    tags: string[];
+
     @CreateDateColumn()
-    createdAt:Date
+    createdAt?:Date
 
     @UpdateDateColumn()
-    upatedAt:Date
+    upatedAt?:Date
 
     @ManyToOne(()=>User)
     author:User
+
+    constructor(slug:string,title:string,description:string,body:string,author:User,tags:string[]){
+        this.slug = slug;
+        this.author = author;
+        this.title = title,
+        this.body =body;
+        this.description = description;
+        this.tags = tags 
+    }
 }
 
